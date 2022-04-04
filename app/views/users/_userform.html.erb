@@ -1,0 +1,18 @@
+<% if user.errors.any? %>
+  <div class="error_explanation">
+    <ul>
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<div class="user_forms">
+  <%= form_with(model:user,local:true) do |form| %>
+    <p><%= form.label :name %><%= form.text_field :name %></p>
+    <p><%= form.label :email %><%= form.text_field :email %></p>
+    <p><%= form.label :password %><%= form.text_field :password %></p>
+    <p><%= form.label :password_confirmation %><%= form.text_field :password_confirmation %></p>
+    <p><%= form.submit %></p>
+  <% end %>
+</div>
