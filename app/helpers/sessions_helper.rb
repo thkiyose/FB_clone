@@ -1,6 +1,6 @@
-module SessionsHelper  
+module SessionsHelper
   def current_user
-    current_user ||= User.find_by(id: session[:user_id])
+    @current_user ||= User.find_by(id: session[:user_id])
   end
 
   def can_if_logged_in
