@@ -13,7 +13,9 @@
   <body>
     <header>
       <% if current_user %>
+        <p><%= current_user.name %>：ログイン中</p>
         <%= link_to 'My Page', user_path(current_user.id) %>
+        <%= link_to '投稿' %>
         <%= button_to 'Log Out', session_path(current_user.id), method: :delete %>
       <% else %>
         <%= link_to 'Log In', new_session_path %>
