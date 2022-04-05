@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :logged_in_or_redirect, only: [:show]
+  before_action :can_if_logged_in, only: [:show]
+  before_action :can_if_not_logged_in, only: [:new,:create]
   def new
     @user = User.new
   end
@@ -31,7 +32,11 @@ class UsersController < ApplicationController
     current_user ||= User.find(session[:user_id])
   end
 
-  def logged_in_or_redirect
+  def can_if_logged_in
     redirect_to new_session_path unless current_user
+  end
+
+  def can_if_not_logged_in
+    redirect_to user_path(current_user.id) if current_user
   end
 end
